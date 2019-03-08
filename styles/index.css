@@ -9,3 +9,34 @@ html, body {
     height: 100%;
     width: 100%;
 }
+
+nav {
+    border: 3px solid red;
+}
+
+.container {
+    margin-top: 10%;
+    display:flex;
+    border: 3px solid red;
+    height: 80%;
+}
+
+.char-list {
+    border: 3px solid blue;
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+}
+
+.char-list h1 {
+    margin-left: 10px;
+}
+
+.char-details {
+    border: 3px solid green;
+    flex: 2;
+}
+
+.char-details h1, .char-details h2 {
+    margin-left: 10px;
+}
