@@ -13,34 +13,57 @@ const dad = document.querySelector("[data-dad]");
 
 
 // Set up the left hand pane
-function makeNamesButtons(charactersArray){
-    const names = charactersArray.map(function (guy){
-        return guy.name;
+
+function makeNameClickers(charArray) {
+    const names = charArray.map(function (person) {
+        return person.name;
     });
-    names.forEach(function (name){
-            let button = document.createElement("button");
-            button.textContent = name;
-            button.setAttribute("data-target",'');
-            namesList.append(button);
-        });
+    names.forEach(function(name) {
+        let para = document.createElement('p');
+        para.textContent = name;
+        para.setAttribute('data-target', '');
+        namesList.append(para);
+    });
 }
-makeNamesButtons(characters);
+makeNameClickers(characters);
 
 // Fill in the right hand pane
 function respondToClick() {
-    personName = event.target.textContent;
-    console.log(Object.keys(characters[0]));
+    let personName = event.target.textContent;
+    // console.log(Object.keys(characters[0]));
     characters.forEach(function(person){
         if (person.name == personName) {
             name.textContent = person.name;
             born.textContent = person.born;
-            died.textContent = person.died;
-            title.textContent = person.titles;
-            alleg.textContent = person.allegiances;
-            alias.textContent = person.aliases;
-            spouse.textContent = person.spouse;
-            mom.textContent = person.mother;
-            dad.textContent = person.father;
+            if (person.born.length) {
+                born.textContent = `Born: ${person.born}`;
+            } else {
+                born.textContent = 'Unknown born date'
+            }
+            if (person.died.length) {
+                died.textContent = `Died: ${person.died}`;
+            } else {
+                died.textContent = 'Character isnt dead(yet)'
+            }
+            if (person.titles.length) {
+                title.textContent = `Titles: ${person.titles}`;
+            } else {
+                title.textContent = 'Character has no titles'
+            }
+            if (person.aliases.length) {
+                alias.textContent = `Aliases: ${person.aliases}`;
+            } else {
+                alias.textContent = 'Character has no aliases'
+            }
+            // if (person.spouse.length) {
+            //     spouse.textContent = person.spouse;
+            // } else {
+            //     spouse.textContent = 'person has no spouse'
+            // }
+            // alleg.textContent = person.allegiances;
+
+            // mom.textContent = person.mother;
+            // dad.textContent = person.father;
         }
     });
 }
