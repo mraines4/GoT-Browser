@@ -11,6 +11,9 @@ const spouse = document.querySelector("[data-spouse]");
 const mom = document.querySelector("[data-mom]");
 const dad = document.querySelector("[data-dad]");
 
+let dataSort = document.querySelector('[data-sort]')
+let resetList = document.querySelector(`[data-reset]`);
+resetList.addEventListener('click', showAllChars);
 
 // Set up the left hand pane
 
@@ -22,6 +25,7 @@ function makeNameClickers(charArray) {
         let para = document.createElement('p');
         para.textContent = name;
         para.setAttribute('data-target', '');
+        para.classList.add('char')
         namesList.append(para);
     });
 }
@@ -71,7 +75,43 @@ function addClickEvent(person) {
     person.addEventListener('click', respondToClick);
 }
 
-const characterButtons = document.querySelectorAll('[data-target]');
-characterButtons.forEach(addClickEvent);
+const charactersAll = document.querySelectorAll('[data-target]');
+charactersAll.forEach(addClickEvent);
 
 
+let charList = [];
+function makeList() {
+    let charCode = 65;
+    while (charCode <= 90) {
+        let letter = String.fromCharCode(charCode);
+        let newH3 = document.createElement('h3');
+        newH3.style.margin = '5px';
+        newH3.style.display = 'inline-block'
+        newH3.textContent = letter;
+        dataSort.append(newH3);
+        charList.push(newH3);
+        charCode += 1;
+    }
+}
+makeList();
+// console.log(charList)
+
+charList.forEach(function(letter) {
+    letter.addEventListener('click', sortList);
+});
+
+function sortList(event) {
+    let sortLetter = event.target.textContent;
+    charactersAll.forEach(function(name) {
+        name.style.display = 'block'
+        if (name.textContent[0] !== sortLetter) {
+            name.style.display = 'none';
+        }
+    })
+}
+
+function showAllChars() {
+    charactersAll.forEach(function(name) {
+        name.style.display = 'block'
+    })
+}
