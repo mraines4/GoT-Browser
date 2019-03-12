@@ -116,3 +116,29 @@ function showAllChars() {
         name.style.display = 'block'
     })
 }
+
+// const url = 'http://my-little-cors-proxy.herokuapp.com/'
+
+function accumulateCharacters (theActualData) {
+    allCharactersArray = [
+        ...allCharactersArray,
+        ...theActualData
+    ]
+}
+
+let allCharactersArray = [];
+
+function urlForPage(pageNumber) {
+    return `https://anapioficeandfire.com/api/characters/?page=${pageNumber}&pageSize=50`
+}
+
+for(let pageNumber=0; pageNumber<3; pageNumber++){
+    fetch(urlForPage(pageNumber))
+        .then(function(r) {
+            return r.json();
+        })
+        .then(accumulateCharacters)
+        .then(function() {
+            console.log(`done with page ${pageNumber}`)
+        })
+}
