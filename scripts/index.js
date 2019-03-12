@@ -38,7 +38,6 @@ function respondToClick() {
     characters.forEach(function(person){
         if (person.name == personName) {
             name.textContent = person.name;
-            born.textContent = person.born;
             if (person.born.length) {
                 born.textContent = `Born: ${person.born}`;
             } else {
