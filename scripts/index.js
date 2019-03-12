@@ -71,6 +71,8 @@ function respondToClick() {
         }
     });
 }
+
+
 function addClickEvent(person) {
     person.addEventListener('click', respondToClick);
 }
